@@ -17,8 +17,13 @@ public class RedirectController {
     private RedirectService redirectService;
 
     @GetMapping("/posts")
-    public Post[] redirectExample() {
+    public Post[] getPosts() {
 
         return redirectService.getPosts();
+    }
+
+    @PostMapping("/posts")
+    public Post create(@RequestBody Post post){
+        return redirectService.createPostWithObject(post);
     }
 }
