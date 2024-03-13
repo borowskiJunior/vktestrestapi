@@ -4,6 +4,7 @@ import com.example.api.model.Comment;
 import com.example.api.model.Post;
 import com.example.api.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,6 +17,7 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @Cacheable("posts")
     @GetMapping("/posts")
     public Post[] getPosts() {
         return postService.getPosts();

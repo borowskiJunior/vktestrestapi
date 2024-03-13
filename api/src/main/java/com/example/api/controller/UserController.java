@@ -3,6 +3,7 @@ package com.example.api.controller;
 import com.example.api.model.User;
 import com.example.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,6 +15,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Cacheable("users")
     @GetMapping("/users")
     public User[] getUsers() {
         return userService.getUsers();

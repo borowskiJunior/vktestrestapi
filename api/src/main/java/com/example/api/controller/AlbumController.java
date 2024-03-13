@@ -3,6 +3,7 @@ package com.example.api.controller;
 import com.example.api.model.Album;
 import com.example.api.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,6 +17,7 @@ public class AlbumController {
     @Autowired
     private AlbumService albumService;
 
+    @Cacheable("albums")
     @GetMapping("/albums")
     public Album[] getAlbums() {
         return albumService.getAlbums();
