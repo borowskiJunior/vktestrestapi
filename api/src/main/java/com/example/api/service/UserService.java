@@ -1,6 +1,5 @@
 package com.example.api.service;
 
-import com.example.api.model.Post;
 import com.example.api.model.User;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;

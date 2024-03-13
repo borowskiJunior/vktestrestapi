@@ -55,6 +55,7 @@ public class WebSecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( auth -> auth.requestMatchers("/vktest/posts/**").hasAnyRole(Role.ROLE_ADMIN.toString(), Role.ROLE_POSTS.toString())
                         .requestMatchers("/vktest/users/**").hasAnyRole(Role.ROLE_ADMIN.toString(), Role.ROLE_USERS.toString())
+                        .requestMatchers("/vktest/albums/**").hasAnyRole(Role.ROLE_ADMIN.toString(), Role.ROLE_ALBUMS.toString())
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .build();

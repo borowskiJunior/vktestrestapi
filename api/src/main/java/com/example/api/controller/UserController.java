@@ -1,9 +1,6 @@
 package com.example.api.controller;
 
-import com.example.api.model.Comment;
-import com.example.api.model.Post;
 import com.example.api.model.User;
-import com.example.api.service.PostService;
 import com.example.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/vktest")
 public class UserController {
-
     @Autowired
     private UserService userService;
-
 
     @GetMapping("/users")
     public User[] getUsers() {
@@ -47,7 +42,7 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}")
-    public void delete(@PathVariable("id") int id){
+    public void delete(@PathVariable("id") int id) {
         userService.delete(id);
     }
 }
