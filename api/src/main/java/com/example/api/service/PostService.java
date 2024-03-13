@@ -62,7 +62,6 @@ public class PostService {
 
         ResponseEntity<Post> response = this.restTemplate.exchange(url, HttpMethod.PUT, entity, Post.class, id);
 
-        // check response status code
         if (response.getStatusCode() == HttpStatus.OK) {
             return response.getBody();
         } else {

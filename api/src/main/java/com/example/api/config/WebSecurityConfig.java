@@ -44,7 +44,7 @@ public class WebSecurityConfig {
                 .build();
         UserDetails roleUsers = User.builder()
                 .username("users")
-                .password("users")
+                .password(encoder.encode("users"))
                 .roles(Role.ROLE_USERS.toString())
                 .build();
         return new InMemoryUserDetailsManager(admin, rolePosts, roleAlbums, roleUsers);
@@ -53,7 +53,9 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests( auth -> auth.requestMatchers("/vktest/posts/**").hasAnyRole(Role.ROLE_ADMIN.toString(), Role.ROLE_POSTS.toString()).anyRequest().authenticated())
+                .authorizeHttpRequests( auth -> auth.requestMatchers("/vktest/posts/**").hasAnyRole(Role.ROLE_ADMIN.toString(), Role.ROLE_POSTS.toString())
+                        .requestMatchers("/vktest/users/**").hasAnyRole(Role.ROLE_ADMIN.toString(), Role.ROLE_USERS.toString())
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
