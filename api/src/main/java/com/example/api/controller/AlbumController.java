@@ -2,7 +2,6 @@ package com.example.api.controller;
 
 import com.example.api.model.Album;
 import com.example.api.service.AlbumService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +10,14 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping("/vktest")
+@RequestMapping("/api")
 public class AlbumController {
 
-    @Autowired
-    private AlbumService albumService;
+    private final AlbumService albumService;
+
+    public AlbumController(AlbumService albumService) {
+        this.albumService = albumService;
+    }
 
     @Cacheable("albums")
     @GetMapping("/albums")

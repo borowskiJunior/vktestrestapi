@@ -2,7 +2,6 @@ package com.example.api.controller;
 
 import com.example.api.model.User;
 import com.example.api.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +9,13 @@ import org.springframework.web.bind.annotation.*;
  * @author Max Borowski
  */
 @RestController
-@RequestMapping("/vktest")
+@RequestMapping("/api")
 public class UserController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @Cacheable("users")
     @GetMapping("/users")

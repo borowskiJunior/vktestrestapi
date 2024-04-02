@@ -3,7 +3,6 @@ package com.example.api.controller;
 import com.example.api.model.Comment;
 import com.example.api.model.Post;
 import com.example.api.service.PostService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +11,13 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping("/vktest")
+@RequestMapping("/api")
 public class PostController {
-    @Autowired
-    private PostService postService;
+    private final PostService postService;
+
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
 
     @Cacheable("posts")
     @GetMapping("/posts")
